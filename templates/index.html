@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Tuck to Go{% endblock %}
+
+{% block main %}
+  {{ message }}
+  <p>
+    This website was made in the hopes of making everyone's lives easier while still
+    respecting the busy schedules of the Tuck staff so the website will only run on
+    limited hours currently.
+  </p>
+
+  <div ng-controller="loginCtrl">
+    <div ng-if="logged_in">
+      <p>You are logged in as <span ng-bind="user_name"></span>.</p>
+      <button ng-click="logout()" id="logout-btn">Logout</button>
+    </div>
+  </div>
+
+  <form ng-if="!logged_in" method="post" action="/login/validate">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+    <label>Email: </label>
+    <input type="email" name="email" />
+    <br>
+    <label>Password: </label>
+    <input type="password" name="password" />
+    <br>
+    <button type="submit">Submit</button>
+  </form>
+
+  <!-- I'm too lazy to write css so this <br> is used for formatting... -->
+  <br>
+  <a href="/register">Register Now!</a>
+{% endblock %}
