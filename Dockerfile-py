@@ -1,0 +1,9 @@
+FROM python:3.6
+ENV DATABASE_URL "postgres://postgres@db:5432/tucktogo"
+ENV SECRET_KEY "super_secret"
+
+RUN mkdir /src
+ADD . /src
+
+WORKDIR /src
+RUN pip install -r requirements.txt
